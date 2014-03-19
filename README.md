@@ -1,3 +1,3 @@
 SPRepository
 ============
-Sheena's sample code1.
+Sheena's sample code for Reference.
