@@ -1,0 +1,44 @@
+<%= render 'axiom/security_tags/search_header' %>
+<table class="results_table" width="100%" >
+ <thead class="results_thead">
+  <tr>
+    <th scope="col"><%= t('.security_tag') %></th>
+    <th><%= t('.description') %></th>
+    <th><%= t('.business_owner') %></th>
+    <th><%= t('.active_flag') %></th>
+    <th><%= t('.audit_flag') %></th>
+
+  </tr>
+ </thead>
+ <tbody class="results_tbody">
+
+  <% @security_tags.each do |security_tag| %>
+
+      <tr class="<%= cycle('oddrow', 'evenrow') %>">
+        <td><%= link_to security_tag.security_tag,
+                        { :controller => "security_tag_details",
+                          :security_tag => security_tag.security_tag,
+                          :description => security_tag.description,
+                          :active_flag => security_tag.active_flag,
+                          :audit_flag => security_tag.audit_flag,
+                          :business_owner => security_tag.business_owner},
+                          :id => security_tag.security_tag %></td>
+        <td><%= security_tag.description %></td>
+        <td><%= security_tag.business_owner %></td>
+        <td><%= security_tag.active_flag %></td>
+        <td><%= security_tag.audit_flag %></td>
+
+      </tr>
+  <% end %>
+
+ </tbody>
+</table>
+
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @security_tags %>
+  </div>
+  <%= will_paginate @security_tags, :container => false %>
+</div>
+
+

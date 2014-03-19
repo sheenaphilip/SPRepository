@@ -1,0 +1,66 @@
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag    "axiom/search_header", :media => "all" %>
+<% end %>
+<head>
+  <h1><%= content_for(:title, "Security Tag Add/Edit") %></h1>
+
+</head>
+
+<br/>
+
+
+<%= form_for(@security_tag) do |f| %>
+  <% if @security_tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@security_tag.errors.count, "error") %> prohibited this security tag from being saved:</h2>
+      <ul>
+      <% @security_tag.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+     </div>
+  <% end %>
+
+
+  <div class="header_form">
+
+    <table class="header_table" width="50%">
+
+      <div class="field">
+          <p></p><p></p><p></p><p></p>
+          <td> <%= f.label :security_tag %></td>
+          <td> <%= f.text_field  :security_tag , :onfocus => '$(this).removeClass("hasPlaceholder");' %> </td>
+          <td> <%= f.label :description %></td>
+          <td colspan="20"> <%= f.text_field :description, :onfocus => '$(this).removeClass("hasPlaceholder");' %> </td>
+      </div>
+
+      </tr>
+
+      <tr>
+
+        <div class="field">
+          <td>  <%= f.label :business_owner %>  </td>
+          <td>  <%= f.text_field :business_owner, :onfocus => '$(this).removeClass("hasPlaceholder");' %> </td>
+          <td>  <%= f.label :active_flag %> </td>
+          <td>  <%= f.check_box :active_flag, {}, "true", "false" %></td>
+          <td>  <%= f.label :audit_flag %></td>
+          <td>  <%= f.check_box :audit_flag, {}, "true", "false" %>  </td>
+          <td></td> <td></td> <td></td>
+          <td>  <%= f.submit  %>  </td>
+
+          <td>  <%= submit_tag "Cancel",:name => 'cancel'%></td>
+          <%= link_to ' Back ', axiom_security_tags_path %>
+
+        </div>
+      </tr>
+      <br/>
+
+      <tr>
+        <td></td><td></td><td></td> <td></td><td></td>
+      </tr>
+
+    </table>
+
+
+  </div>
+<% end %>

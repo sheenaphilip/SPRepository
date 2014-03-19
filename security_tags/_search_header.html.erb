@@ -1,0 +1,62 @@
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag    "axiom/search_header", :media => "all" %>
+<% end %>
+
+<%= form_tag(axiom_security_tags_path, :method => 'get') do %>
+    <head>
+      <h1><%= content_for(:title, "Security Tag Search") %></h1>
+
+    </head>
+    <div class="header">
+      <%=t :security_tag_search %><!-- <label id="code.depot.e.title"/> -->
+    </div>
+    <div class="header_form">
+      <br/>
+        <table class="header_table" width="50%">
+          <tr>
+
+              <td>
+              <%= "<label for=search_text> #{t '.security_tag_label'} </label>".html_safe %></td>
+              <td>
+              <%= text_field_tag 'search_text', params[:search_text], :onfocus => '$(this).removeClass("hasPlaceholder");' %> </td>
+
+              <td>
+                <%= "<label for=search_descr_text> #{t '.tag_description_label'} </label>".html_safe %></td>
+              <td colspan="2">
+                <%= text_field_tag 'search_descr_text',params[:search_descr_text],:size => 40, :onfocus => '$(this).removeClass("hasPlaceholder");' %> </td>
+
+
+
+          </tr>
+
+          <tr>
+
+            <div class="field">
+              <td>
+                <%= "<label for=business_owner> #{t '.business_owner_label'} </label>".html_safe %>  </td>
+              <td>
+
+                <%= select_tag "business_owner", options_for_select(@business_owners,session[:business_owner]) %>    </td>
+              <td>
+                <%= "<label for=active_flag> #{t '.active_flag_label'} </label>".html_safe %>
+              </td>
+              <td><%= select_tag "active_flag", options_for_select([[t('all'),"All"], [t('yes'),"True"], [t('no'), "False"] ], session[:active_flag]) %></td>
+
+              <td><%= "<label for=audit_flag> #{t '.audit_flag_label'} </label>".html_safe %>  </td>
+              <td><%= select_tag "audit_flag", options_for_select([ [t('all'),"All"], [t('yes'),"True"], [t('no') , "False"]], session[:audit_flag]) %>  </td>
+            </div>
+          </tr>
+
+          <br/>
+               <tr>
+               <td></td><td></td><td></td>
+               <td> <%= submit_tag  t('.search_button_txt'), :class => 'button'  %>  </td>
+               <td> <%= link_to " New Security Tag ", new_axiom_security_tag_path,:class => 'button' %> </td>
+               </tr>
+
+
+        </table>
+        <br />
+    </div>
+
+<%end%>
